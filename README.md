@@ -12,7 +12,7 @@ Use
 3) Download and import the database dump from http://www.eveonline.com/community/toolkit.asp
 
 4) run evedb (this example assumes mysql as target database)
-  evedb "mssql://<user>:<password>@<server>/<database>?PORT=51950" "mysql://<user>:<password>@<server>/<database>"
+    evedb "mssql://<user>:<password>@<server>/<database>?PORT=51950" "mysql://<user>:<password>@<server>/<database>"
 
 4.b) Watch the epic fail, since you are probably using an untested datasource as target ; ) - start hacking!
 
@@ -26,10 +26,10 @@ The connection string is directly passed into create_engine of the sqlalchemy pa
 
 In my case, I am using FreeTDS to connect to the SQLServer through unixODBC, my /etc/unixODBC/odbcinst.ini looks like this:
 
-  [SQL Server]
-  Description=v0.63 with protocol v8.0
-  Driver=/usr/lib/libtdsodbc.so
-  UsageCount=1
+    [SQL Server]
+    Description=v0.63 with protocol v8.0
+    Driver=/usr/lib/libtdsodbc.so
+    UsageCount=1
 
 I'm also running sqlserver on a different port, which above displays how arguments can be passed directly into the odbc infrastructure (if you are into that sort of things).
 
