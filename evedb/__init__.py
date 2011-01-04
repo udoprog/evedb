@@ -22,8 +22,12 @@ def map_tables(engine, create_all=False):
   o.mapSolarSystems = Table('mapSolarSystems', metadata,
     Column('solarSystemID', Integer, primary_key=True),
     Column('constellationID', Integer),
+    Column('security', Float),
     Column('regionID', Integer),
     Column('solarSystemName', String(100)),
+    Column('x', Float),
+    Column('y', Float),
+    Column('z', Float),
   );
   
   o.mapSolarSystemJumps = Table('mapSolarSystemJumps', metadata,
@@ -56,9 +60,8 @@ def copy_table(source, target, table_name):
   
   s_table = getattr(source, table_name)
   t_table = getattr(target, table_name)
-
-  data=list(s_conn.execute(s_table.select()));
-  t_conn.execute(t_table.insert(), data);
+  
+  t_conn.execute(t_table.insert(), list(s_conn.execute(s_table.select())));
 
 def entrypoint():
   import sys
